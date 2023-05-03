@@ -72,12 +72,48 @@ const getQuestionData = (amount, category, difficultyLevel) => {
                     }
                 }
                 console.log(questions);
-                // renderQuestionData(questions);
+                renderQuestionData(questions);
             }
         })
         .catch((error) => console.log(error));
 };
 
-getQuestionData(5, 23, 'easy');
+getQuestionData(3, 23, 'medium');
 
-const renderQuestionData = (questions) => {};
+getQuestionData(10, 9, 'hard');
+
+const renderQuestionData = (questions) => {
+    const container = document.getElementById('game');
+
+    questions.forEach((question) => {
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card-container');
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.setAttribute('data-question', question.question);
+        card.setAttribute('data-answer', question.correct_answer);
+
+        console.log(card);
+
+        const cardFront = document.createElement('div');
+        cardFront.classList.add('card-front');
+        const questionElement = document.createElement('p');
+        questionElement.classList.add('question');
+        questionElement.textContent = question.question;
+        cardFront.appendChild(questionElement);
+
+        const cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+        const answerElement = document.createElement('p');
+        answerElement.classList.add('answer');
+        answerElement.textContent = question.correct_answer;
+        cardBack.appendChild(answerElement);
+
+        card.appendChild(cardFront);
+        card.appendChild(cardBack);
+
+        cardContainer.appendChild(card);
+        container.appendChild(cardContainer);
+    });
+};
