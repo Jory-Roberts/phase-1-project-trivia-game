@@ -5,3 +5,14 @@ body {
         'Lucida Sans', Arial, sans-serif;
     text-align: center;
 }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    height: 300px;
+}
