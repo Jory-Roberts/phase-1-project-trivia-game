@@ -55,18 +55,27 @@ const getGameData = (amount, category, difficultyLevel) => {
         `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
     )
         .then((response) => response.json())
-        .then((question) => {
-            // Check if there are enough questions for the requested difficulty level
-            if (question.results.length < amount) {
+        .then((data) => {
+            if (data.results.length < amount) {
                 console.log(
-                    `There are only ${question.results.length} questions for ${difficultyLevel} difficulty.`
+                    `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
                 );
             } else {
-                console.log(question);
-                // Process the data here, display a question to the user
+                const questions = [];
+                while (questions.length < amount) {
+                    const randomNumber = Math.floor(
+                        Math.random() * data.results.length
+                    );
+                    const question = data.results[randomNumber];
+                    if (!questions.includes(question)) {
+                        questions.push(question);
+                    }
+                }
+                console.log(questions);
+                // Process the questions here
             }
         })
         .catch((error) => console.log(error));
 };
 
-getGameData(5, 23, 'easy');
+getGameData(3, 15, 'easy');
