@@ -50,12 +50,23 @@ console.log(score);
 const difficultyLevels = ['easy', 'medium', 'hard'];
 console.log(difficultyLevels);
 
-const getGameData = () => {
+const getGameData = (amount, category, difficultyLevel) => {
     fetch(
-        'https://opentdb.com/api.php?amount=3&category=23&difficulty=easy&type=boolean'
+        `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
     )
         .then((response) => response.json())
-        .then((category) => console.log(category));
+        .then((question) => {
+            // Check if there are enough questions for the requested difficulty level
+            if (question.results.length < amount) {
+                console.log(
+                    `There are only ${question.results.length} questions for ${difficultyLevel} difficulty.`
+                );
+            } else {
+                console.log(question);
+                // Process the data here, display a question to the user
+            }
+        })
+        .catch((error) => console.log(error));
 };
 
-getGameData();
+getGameData(5, 23, 'easy');
