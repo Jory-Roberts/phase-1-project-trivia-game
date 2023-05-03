@@ -50,7 +50,7 @@ console.log(score);
 const difficultyLevels = ['easy', 'medium', 'hard'];
 console.log(difficultyLevels);
 
-const getGameData = (amount, category, difficultyLevel) => {
+const getQuestionData = (amount, category, difficultyLevel) => {
     fetch(
         `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
     )
@@ -72,10 +72,12 @@ const getGameData = (amount, category, difficultyLevel) => {
                     }
                 }
                 console.log(questions);
-                // Process the questions here
+                // renderQuestionData(questions);
             }
         })
         .catch((error) => console.log(error));
 };
 
-getGameData(3, 15, 'easy');
+getQuestionData(5, 23, 'easy');
+
+const renderQuestionData = (questions) => {};
