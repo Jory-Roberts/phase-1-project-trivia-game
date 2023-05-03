@@ -78,9 +78,9 @@ const getQuestionData = (amount, category, difficultyLevel) => {
         .catch((error) => console.log(error));
 };
 
-getQuestionData(3, 23, 'medium');
+getQuestionData(3, 15, 'medium');
 
-getQuestionData(10, 9, 'hard');
+getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
 
 const renderQuestionData = (questions) => {
     const container = document.getElementById('game');
@@ -100,7 +100,9 @@ const renderQuestionData = (questions) => {
         cardFront.classList.add('card-front');
         const questionElement = document.createElement('p');
         questionElement.classList.add('question');
-        questionElement.textContent = question.question;
+        questionElement.textContent = question.question
+            .replaceAll('&#039;', `'`)
+            .replaceAll('&quot;', `"`);
         cardFront.appendChild(questionElement);
 
         const cardBack = document.createElement('div');
