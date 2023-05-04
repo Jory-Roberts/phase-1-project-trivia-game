@@ -109,23 +109,38 @@ const renderQuestionData = (questions) => {
         trueLabel.textContent = 'True';
         const trueInput = document.createElement('input');
         trueInput.type = 'radio';
-        trueInput.name = question.question;
         trueInput.value = 'True';
-        trueLabel.appendChild(trueInput);
+
+        card.appendChild(trueInput);
         card.appendChild(trueLabel);
-        console.log(trueLabel);
-        console.log(trueInput);
 
         const falseLabel = document.createElement('label');
         falseLabel.textContent = 'False';
         const falseInput = document.createElement('input');
         falseInput.type = 'radio';
-        falseInput.name = question.question;
         falseInput.value = 'False';
-        falseLabel.appendChild(falseInput);
+
+        card.appendChild(falseInput);
         card.appendChild(falseLabel);
-        console.log(falseLabel);
-        console.log(falseInput);
+
+        card.appendChild(cardFront);
+
+        cardContainer.appendChild(card);
+        container.appendChild(cardContainer);
+
+        // Add event listeners to the radio buttons
+        const radioButtons = card.querySelectorAll('input[type=radio]');
+
+        radioButtons.forEach((radio) => {
+            radio.addEventListener('click', (e) => {
+                if (e.target.value === 'True') {
+                    console.log('clicking true');
+                }
+                if (e.target.value === 'False') {
+                    console.log('clicking false');
+                }
+            });
+        });
 
         // const cardBack = document.createElement('div');
         // cardBack.classList.add('card-back');
@@ -142,9 +157,18 @@ const renderQuestionData = (questions) => {
     });
 };
 
+const addingEventListeners = () => {
+    const submitButton = document.getElementById('button');
+    submitButton.addEventListener('click', () => {
+        console.log('handle submit');
+    });
+};
+
+addingEventListeners();
+
 /*updated TODOs: 
--Add event Listener to submitt buttons
--Add event listener to radio buttons
--Provide way to add a hint feature to reveal correct answer
-- Add functionality for the score
- */
+    -Add event Listener to submitt buttons
+    -Add event listener to radio buttons
+    -Provide way to add a hint feature to reveal correct answer
+    - Add functionality for the score
+     */
