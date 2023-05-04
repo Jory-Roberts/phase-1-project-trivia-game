@@ -142,15 +142,16 @@ const renderQuestionData = (questions) => {
             });
         });
 
-        // const cardBack = document.createElement('div');
-        // cardBack.classList.add('card-back');
-        // const answerElement = document.createElement('p');
-        // answerElement.classList.add('answer');
-        // answerElement.textContent = question.correct_answer;
-        // cardBack.appendChild(answerElement);
+        /*const cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+        const answerElement = document.createElement('p');
+        answerElement.classList.add('answer');
+        answerElement.textContent = question.correct_answer;
+        cardBack.appendChild(answerElement);
+        card.appendChild(cardBack);
+        */
 
         card.appendChild(cardFront);
-        // card.appendChild(cardBack);
 
         cardContainer.appendChild(card);
         container.appendChild(cardContainer);
@@ -168,7 +169,7 @@ addingEventListeners();
 
 /*updated TODOs: 
     -Add event Listener to submitt buttons
-    -Add event listener to radio buttons
+    -Add event listener to radio buttons (need to correct issue with buttons not de selecting. Need to add name attribute to both. Possibly change to 'change' event)
     -Provide way to add a hint feature to reveal correct answer
     - Add functionality for the score
      */
