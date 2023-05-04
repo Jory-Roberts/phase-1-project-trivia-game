@@ -105,15 +105,37 @@ const renderQuestionData = (questions) => {
             .replaceAll('&quot;', `"`);
         cardFront.appendChild(questionElement);
 
-        const cardBack = document.createElement('div');
-        cardBack.classList.add('card-back');
-        const answerElement = document.createElement('p');
-        answerElement.classList.add('answer');
-        answerElement.textContent = question.correct_answer;
-        cardBack.appendChild(answerElement);
+        const trueLabel = document.createElement('label');
+        trueLabel.textContent = 'True';
+        const trueInput = document.createElement('input');
+        trueInput.type = 'radio';
+        trueInput.name = question.question;
+        trueInput.value = 'True';
+        trueLabel.appendChild(trueInput);
+        card.appendChild(trueLabel);
+        console.log(trueLabel);
+        console.log(trueInput);
+
+        const falseLabel = document.createElement('label');
+        falseLabel.textContent = 'False';
+        const falseInput = document.createElement('input');
+        falseInput.type = 'radio';
+        falseInput.name = question.question;
+        falseInput.value = 'False';
+        falseLabel.appendChild(falseInput);
+        card.appendChild(falseLabel);
+        console.log(falseLabel);
+        console.log(falseInput);
+
+        // const cardBack = document.createElement('div');
+        // cardBack.classList.add('card-back');
+        // const answerElement = document.createElement('p');
+        // answerElement.classList.add('answer');
+        // answerElement.textContent = question.correct_answer;
+        // cardBack.appendChild(answerElement);
 
         card.appendChild(cardFront);
-        card.appendChild(cardBack);
+        // card.appendChild(cardBack);
 
         cardContainer.appendChild(card);
         container.appendChild(cardContainer);
