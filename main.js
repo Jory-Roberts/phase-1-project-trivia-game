@@ -141,3 +141,10 @@ const renderQuestionData = (questions) => {
         container.appendChild(cardContainer);
     });
 };
+
+/*updated TODOs: 
+-Add event Listener to submitt buttons
+-Add event listener to radio buttons
+-Provide way to add a hint feature to reveal correct answer
+- Add functionality for the score
+ */
