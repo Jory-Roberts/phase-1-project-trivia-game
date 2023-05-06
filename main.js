@@ -44,8 +44,8 @@ function to flip card {
 */
 const game = document.getElementById('game');
 console.log(game);
-const score = document.getElementById('score');
-console.log(score);
+
+let score = 0;
 
 const difficultyLevels = ['easy', 'medium', 'hard'];
 console.log(difficultyLevels);
@@ -93,6 +93,7 @@ const renderQuestionData = (questions) => {
         card.classList.add('card');
         card.setAttribute('data-question', question.question);
         card.setAttribute('data-answer', question.correct_answer);
+        // card.setAttribute('data-value', card.innerText);
 
         console.log(card);
 
@@ -134,14 +135,22 @@ const renderQuestionData = (questions) => {
         radioButtons.forEach((radio) => {
             radio.addEventListener('change', (e) => {
                 radioButtons.forEach((button) => {
+                    //Changes selection visually between T/F
                     button.checked = button == e.target;
                 });
-                if (e.target.value == 'True') {
-                    console.log('clicking true');
+                const selectedCard = e.target.closest('.card');
+                const correctAnswer = selectedCard.getAttribute('data-answer');
+
+                if (e.target.value === correctAnswer) {
+                    // Increment the score
+                    score++;
+                    console.log('Correct answer!');
+                } else {
+                    score--;
+                    console.log('Wrong answer!');
                 }
-                if (e.target.value == 'False') {
-                    console.log('clicking false');
-                }
+
+                console.log('Current score:', score);
             });
         });
 
