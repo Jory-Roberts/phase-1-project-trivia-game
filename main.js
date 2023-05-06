@@ -78,7 +78,7 @@ const getQuestionData = (amount, category, difficultyLevel) => {
         .catch((error) => console.log(error));
 };
 
-getQuestionData(3, 15, 'medium');
+getQuestionData(5, 15, 'medium');
 
 getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
 
@@ -132,11 +132,14 @@ const renderQuestionData = (questions) => {
         const radioButtons = card.querySelectorAll('input[type=radio]');
 
         radioButtons.forEach((radio) => {
-            radio.addEventListener('click', (e) => {
-                if (e.target.value === 'True') {
+            radio.addEventListener('change', (e) => {
+                radioButtons.forEach((button) => {
+                    button.checked = button == e.target;
+                });
+                if (e.target.value == 'True') {
                     console.log('clicking true');
                 }
-                if (e.target.value === 'False') {
+                if (e.target.value == 'False') {
                     console.log('clicking false');
                 }
             });
