@@ -111,13 +111,6 @@ const renderQuestionData = (questions) => {
             .replaceAll('&quot;', `"`);
         cardFront.appendChild(questionElement);
 
-        // const cardBack = document.createElement('div');
-        // cardBack.classList.add('card-back');
-        // const answerElement = document.createElement('p');
-        // answerElement.classList.add('answer');
-        // answerElement.textContent = question.correct_answer;
-        // cardBack.appendChild(answerElement);
-
         const trueLabel = document.createElement('label');
         trueLabel.textContent = 'True';
         const trueInput = document.createElement('input');
@@ -137,7 +130,6 @@ const renderQuestionData = (questions) => {
         card.appendChild(falseLabel);
 
         card.appendChild(cardFront);
-        // card.appendChild(cardBack);
 
         cardContainer.appendChild(card);
         container.appendChild(cardContainer);
