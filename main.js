@@ -126,12 +126,16 @@ const addRadioChangeListeners = (radioButtons) => {
             const selectedCard = e.target.closest('.card');
             const correctAnswer = selectedCard.getAttribute('data-answer');
 
+            selectedCard.classList.add('flipped');
+
             if (e.target.value === correctAnswer) {
                 score++;
                 console.log('Correct answer!');
+                selectedCard.classList.add('correct');
             } else {
                 score--;
                 console.log('Wrong answer!');
+                selectedCard.classList.add('wrong');
             }
 
             console.log('Current score:', score);

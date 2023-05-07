@@ -68,3 +68,11 @@ body {
 .card input[type='radio'] {
     margin: 5px;
 }
+
+.card.correct {
+    border: 5px solid green;
+}
+
+.card.wrong {
+    border: 5px solid red;
+}
