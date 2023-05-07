@@ -112,7 +112,50 @@ getQuestionData(5, 9, 'medium');
 
 // getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
 
-const createCard = (question) => {};
+const createCard = (question) => {
+    const cardContainer = document.createElement('div');
+    cardContainer.classList.add('card-container');
+
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.setAttribute('data-question', question.question);
+    card.setAttribute('data-answer', question.correct_answer);
+
+    console.log(card);
+
+    const cardFront = document.createElement('div');
+    cardFront.classList.add('card-front');
+    const questionElement = document.createElement('p');
+    questionElement.classList.add('question');
+    questionElement.textContent = question.question
+        .replaceAll('&#039;', `'`)
+        .replaceAll('&quot;', `"`);
+    cardFront.appendChild(questionElement);
+
+    const trueLabel = document.createElement('label');
+    trueLabel.textContent = 'True';
+    const trueInput = document.createElement('input');
+    trueInput.type = 'radio';
+    trueInput.value = 'True';
+
+    card.appendChild(trueInput);
+    card.appendChild(trueLabel);
+
+    const falseLabel = document.createElement('label');
+    falseLabel.textContent = 'False';
+    const falseInput = document.createElement('input');
+    falseInput.type = 'radio';
+    falseInput.value = 'False';
+
+    card.appendChild(falseInput);
+    card.appendChild(falseLabel);
+
+    card.appendChild(cardFront);
+
+    cardContainer.appendChild(card);
+
+    return cardContainer;
+};
 
 const addRadioChangeListeners = (radioButtons) => {
     radioButtons.map((radio) => {
@@ -142,53 +185,16 @@ const renderQuestionData = (questions) => {
     const container = document.getElementById('game');
 
     questions.forEach((question) => {
-        const cardContainer = document.createElement('div');
-        cardContainer.classList.add('card-container');
-
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.setAttribute('data-question', question.question);
-        card.setAttribute('data-answer', question.correct_answer);
-
-        console.log(card);
-
-        const cardFront = document.createElement('div');
-        cardFront.classList.add('card-front');
-        const questionElement = document.createElement('p');
-        questionElement.classList.add('question');
-        questionElement.textContent = question.question
-            .replaceAll('&#039;', `'`)
-            .replaceAll('&quot;', `"`);
-        cardFront.appendChild(questionElement);
-
-        const trueLabel = document.createElement('label');
-        trueLabel.textContent = 'True';
-        const trueInput = document.createElement('input');
-        trueInput.type = 'radio';
-        trueInput.value = 'True';
-
-        card.appendChild(trueInput);
-        card.appendChild(trueLabel);
-
-        const falseLabel = document.createElement('label');
-        falseLabel.textContent = 'False';
-        const falseInput = document.createElement('input');
-        falseInput.type = 'radio';
-        falseInput.value = 'False';
-
-        card.appendChild(falseInput);
-        card.appendChild(falseLabel);
-
-        card.appendChild(cardFront);
-
-        cardContainer.appendChild(card);
+        const cardContainer = createCard(question);
         container.appendChild(cardContainer);
-
-        const radioButtons = Array.from(
-            card.querySelectorAll('input[type=radio]')
-        );
-        addRadioChangeListeners(radioButtons);
+        // cardContainer.appendChild(card);
+        // container.appendChild(cardContainer);
     });
+
+    const radioButtons = Array.from(
+        container.querySelectorAll('input[type=radio]')
+    );
+    addRadioChangeListeners(radioButtons);
 };
 
 const handleUserInput = () => {
@@ -211,7 +217,6 @@ const addingEventListeners = () => {
     const submitButton = document.getElementById('button');
     submitButton.addEventListener('click', handleUserInput);
 };
-
 addingEventListeners();
 
 /*updated TODOs: 
