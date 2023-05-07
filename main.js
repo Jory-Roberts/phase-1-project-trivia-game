@@ -84,14 +84,17 @@ const createCard = (question) => {
         .replaceAll('&quot;', `"`);
     cardFront.appendChild(questionElement);
 
+    const cardBack = document.createElement('div');
+    cardBack.classList.add('card-back');
+
     const trueLabel = document.createElement('label');
     trueLabel.textContent = 'True';
     const trueInput = document.createElement('input');
     trueInput.type = 'radio';
     trueInput.value = 'True';
 
-    card.appendChild(trueInput);
-    card.appendChild(trueLabel);
+    cardBack.appendChild(trueInput);
+    cardBack.appendChild(trueLabel);
 
     const falseLabel = document.createElement('label');
     falseLabel.textContent = 'False';
@@ -99,11 +102,15 @@ const createCard = (question) => {
     falseInput.type = 'radio';
     falseInput.value = 'False';
 
-    card.appendChild(falseInput);
-    card.appendChild(falseLabel);
+    cardBack.appendChild(falseInput);
+    cardBack.appendChild(falseLabel);
 
     card.appendChild(cardFront);
+    card.appendChild(cardBack);
 
+    card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+    });
     cardContainer.appendChild(card);
 
     return cardContainer;
@@ -159,4 +166,5 @@ const addingEventListeners = () => {
     const submitButton = document.getElementById('button');
     submitButton.addEventListener('click', handleUserInput);
 };
+
 addingEventListeners();
