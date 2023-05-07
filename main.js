@@ -1,47 +1,3 @@
-/*
-PSEUDOCODE:
-
-variables:
-    for game
-    for score
-    for difficultyLevel = [use array]
-
-
-function to fetch data from API {
-    fetch(data from API)
-    Grab genre data from API
-    array method => (function to render genre data to the DOM)
-
-}
-
-function to render genre data to the DOM {
-    create.element(something)
-    create.element(something)
-    create(element(something)
-
-  
-}
-
-function to flip card {
-    attach event listener to card
-    create.element(something)
-    create.element(something)
-    create.element(something)
-
-
-    function to start timer {
-    this function counts down from a set time
-    }
-
-    function to handle score {
-    score should increase if answers are correct
-    score should decrease if answers are incorrect
-    }
-
-    function to persist scoreboard {
-    
-    }
-*/
 const game = document.getElementById('game');
 console.log(game);
 
@@ -107,10 +63,6 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
         console.log(error);
     }
 };
-
-getQuestionData(5, 9, 'medium');
-
-// getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
 
 const createCard = (question) => {
     const cardContainer = document.createElement('div');
@@ -187,8 +139,6 @@ const renderQuestionData = (questions) => {
     questions.forEach((question) => {
         const cardContainer = createCard(question);
         container.appendChild(cardContainer);
-        // cardContainer.appendChild(card);
-        // container.appendChild(cardContainer);
     });
 
     const radioButtons = Array.from(
@@ -200,17 +150,9 @@ const renderQuestionData = (questions) => {
 const handleUserInput = () => {
     const selectedAmount = parseInt(numberOfQuestions.value);
     const selectedCategory = categorySelect.value;
+    const selectedDifficultyLevel = level.value;
 
-    if (selectedCategory && selectedAmount) {
-        const difficultyLevel =
-            difficultyLevels[
-                Math.floor(Math.random() * difficultyLevels.length)
-            ];
-
-        getQuestionData(selectedAmount, selectedCategory, difficultyLevel);
-    } else {
-        console.log('Please select both category and amount');
-    }
+    getQuestionData(selectedAmount, selectedCategory, selectedDifficultyLevel);
 };
 
 const addingEventListeners = () => {
@@ -220,8 +162,52 @@ const addingEventListeners = () => {
 addingEventListeners();
 
 /*updated TODOs: 
-    -Add event Listener to submitt buttons
-    -Add event listener to radio buttons (need to correct issue with buttons not de selecting. Need to add name attribute to both. Possibly change to 'change' event)
+    -Add event Listener to submitt buttons [COMPLETE]
+    -Add event listener to radio buttons (need to correct issue with buttons not de selecting. Need to add name attribute to both. Possibly change to 'change' event) [COMPLETE]
     -Provide way to add a hint feature to reveal correct answer
     - Add functionality for the score
      */
+/*
+PSEUDOCODE:
+
+variables:
+    for game
+    for score
+    for difficultyLevel = [use array]
+
+
+function to fetch data from API {
+    fetch(data from API)
+    Grab genre data from API
+    array method => (function to render genre data to the DOM)
+
+}
+
+function to render genre data to the DOM {
+    create.element(something)
+    create.element(something)
+    create(element(something)
+
+  
+}
+
+function to flip card {
+    attach event listener to card
+    create.element(something)
+    create.element(something)
+    create.element(something)
+
+
+    function to start timer {
+    this function counts down from a set time
+    }
+
+    function to handle score {
+    score should increase if answers are correct
+    score should decrease if answers are incorrect
+    }
+
+    function to persist scoreboard {
+    
+    }
+*/
