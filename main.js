@@ -52,32 +52,35 @@ const scoreElement = document.getElementById('score');
 const difficultyLevels = ['easy', 'medium', 'hard'];
 console.log(difficultyLevels);
 
-const getQuestionData = (amount, category, difficultyLevel) => {
-    fetch(
-        `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
-    )
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.results.length < amount) {
-                console.log(
-                    `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
+const getQuestionData = async (amount, category, difficultyLevel) => {
+    try {
+        const response = await fetch(
+            `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
+        );
+        const data = await response.json();
+
+        if (data.results.length < amount) {
+            console.log(
+                `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
+            );
+        } else {
+            const questions = Array.from(data.results);
+            const randomizedQuestions = [];
+
+            while (randomizedQuestions.length < amount) {
+                const randomNumber = Math.floor(
+                    Math.random() * questions.length
                 );
-            } else {
-                const questions = [];
-                while (questions.length < amount) {
-                    const randomNumber = Math.floor(
-                        Math.random() * data.results.length
-                    );
-                    const question = data.results[randomNumber];
-                    if (!questions.includes(question)) {
-                        questions.push(question);
-                    }
-                }
-                console.log(questions);
-                renderQuestionData(questions);
+                const question = questions.splice(randomNumber, 1)[0];
+                randomizedQuestions.push(question);
             }
-        })
-        .catch((error) => console.log(error));
+
+            console.log(randomizedQuestions);
+            renderQuestionData(randomizedQuestions);
+        }
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 getQuestionData(5, 23, 'medium');
@@ -139,12 +142,13 @@ const renderQuestionData = (questions) => {
         cardContainer.appendChild(card);
         container.appendChild(cardContainer);
 
-        // Add event listeners to the radio buttons
-        const radioButtons = card.querySelectorAll('input[type=radio]');
+        const radioButtons = Array.from(
+            card.querySelectorAll('input[type=radio]')
+        );
 
-        radioButtons.forEach((radio) => {
+        radioButtons.map((radio) => {
             radio.addEventListener('change', (e) => {
-                radioButtons.forEach((button) => {
+                radioButtons.map((button) => {
                     //Changes selection visually between T/F
                     button.checked = button == e.target;
                 });
@@ -152,7 +156,6 @@ const renderQuestionData = (questions) => {
                 const correctAnswer = selectedCard.getAttribute('data-answer');
 
                 if (e.target.value === correctAnswer) {
-                    // Increment the score
                     score++;
                     console.log('Correct answer!');
                 } else {
@@ -161,7 +164,7 @@ const renderQuestionData = (questions) => {
                 }
 
                 console.log('Current score:', score);
-                scoreElement.textContent = `Score: ${score}`;
+                scoreElement.textContent = `${score}`;
             });
         });
 
