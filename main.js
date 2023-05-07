@@ -47,6 +47,8 @@ console.log(game);
 
 let score = 0;
 
+const scoreElement = document.getElementById('score');
+
 const difficultyLevels = ['easy', 'medium', 'hard'];
 console.log(difficultyLevels);
 
@@ -78,7 +80,7 @@ const getQuestionData = (amount, category, difficultyLevel) => {
         .catch((error) => console.log(error));
 };
 
-getQuestionData(5, 15, 'medium');
+getQuestionData(5, 23, 'medium');
 
 getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
 
@@ -106,6 +108,13 @@ const renderQuestionData = (questions) => {
             .replaceAll('&quot;', `"`);
         cardFront.appendChild(questionElement);
 
+        // const cardBack = document.createElement('div');
+        // cardBack.classList.add('card-back');
+        // const answerElement = document.createElement('p');
+        // answerElement.classList.add('answer');
+        // answerElement.textContent = question.correct_answer;
+        // cardBack.appendChild(answerElement);
+
         const trueLabel = document.createElement('label');
         trueLabel.textContent = 'True';
         const trueInput = document.createElement('input');
@@ -125,6 +134,7 @@ const renderQuestionData = (questions) => {
         card.appendChild(falseLabel);
 
         card.appendChild(cardFront);
+        // card.appendChild(cardBack);
 
         cardContainer.appendChild(card);
         container.appendChild(cardContainer);
@@ -151,17 +161,9 @@ const renderQuestionData = (questions) => {
                 }
 
                 console.log('Current score:', score);
+                scoreElement.textContent = `Score: ${score}`;
             });
         });
-
-        /*const cardBack = document.createElement('div');
-        cardBack.classList.add('card-back');
-        const answerElement = document.createElement('p');
-        answerElement.classList.add('answer');
-        answerElement.textContent = question.correct_answer;
-        cardBack.appendChild(answerElement);
-        card.appendChild(cardBack);
-        */
 
         card.appendChild(cardFront);
 
