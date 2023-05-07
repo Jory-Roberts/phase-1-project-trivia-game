@@ -188,11 +188,6 @@ const renderQuestionData = (questions) => {
             card.querySelectorAll('input[type=radio]')
         );
         addRadioChangeListeners(radioButtons);
-
-        card.appendChild(cardFront);
-
-        cardContainer.appendChild(card);
-        container.appendChild(cardContainer);
     });
 };
 
