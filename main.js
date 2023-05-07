@@ -52,6 +52,27 @@ const scoreElement = document.getElementById('score');
 const difficultyLevels = ['easy', 'medium', 'hard'];
 console.log(difficultyLevels);
 
+const category = [
+    {
+        name: 'Books',
+        id: 10,
+    },
+    {
+        name: 'Video Games',
+        id: 15,
+    },
+    {
+        name: 'Computers',
+        id: 18,
+    },
+    {
+        name: 'Sports',
+        id: 21,
+    },
+];
+
+console.log(category);
+
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
         const response = await fetch(
@@ -83,7 +104,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
     }
 };
 
-getQuestionData(5, 23, 'medium');
+getQuestionData(5, 9, 'medium');
 
 getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
 
