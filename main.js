@@ -71,7 +71,11 @@ const category = [
     },
 ];
 
+const categorySelect = document.getElementById('category');
+const numberOfQuestions = document.getElementById('amount');
 console.log(category);
+console.log(categorySelect);
+console.log(numberOfQuestions);
 
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
@@ -106,7 +110,33 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
 
 getQuestionData(5, 9, 'medium');
 
-getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
+// getQuestionData(10, 9, 'hard'); // returns 0 questions as expected
+
+const createCard = (question) => {};
+
+const addRadioChangeListeners = (radioButtons) => {
+    radioButtons.map((radio) => {
+        radio.addEventListener('change', (e) => {
+            radioButtons.map((button) => {
+                //Changes selection visually between T/F
+                button.checked = button == e.target;
+            });
+            const selectedCard = e.target.closest('.card');
+            const correctAnswer = selectedCard.getAttribute('data-answer');
+
+            if (e.target.value === correctAnswer) {
+                score++;
+                console.log('Correct answer!');
+            } else {
+                score--;
+                console.log('Wrong answer!');
+            }
+
+            console.log('Current score:', score);
+            scoreElement.textContent = `${score}`;
+        });
+    });
+};
 
 const renderQuestionData = (questions) => {
     const container = document.getElementById('game');
@@ -119,7 +149,6 @@ const renderQuestionData = (questions) => {
         card.classList.add('card');
         card.setAttribute('data-question', question.question);
         card.setAttribute('data-answer', question.correct_answer);
-        // card.setAttribute('data-value', card.innerText);
 
         console.log(card);
 
@@ -158,28 +187,7 @@ const renderQuestionData = (questions) => {
         const radioButtons = Array.from(
             card.querySelectorAll('input[type=radio]')
         );
-
-        radioButtons.map((radio) => {
-            radio.addEventListener('change', (e) => {
-                radioButtons.map((button) => {
-                    //Changes selection visually between T/F
-                    button.checked = button == e.target;
-                });
-                const selectedCard = e.target.closest('.card');
-                const correctAnswer = selectedCard.getAttribute('data-answer');
-
-                if (e.target.value === correctAnswer) {
-                    score++;
-                    console.log('Correct answer!');
-                } else {
-                    score--;
-                    console.log('Wrong answer!');
-                }
-
-                console.log('Current score:', score);
-                scoreElement.textContent = `${score}`;
-            });
-        });
+        addRadioChangeListeners(radioButtons);
 
         card.appendChild(cardFront);
 
@@ -188,11 +196,25 @@ const renderQuestionData = (questions) => {
     });
 };
 
+const handleUserInput = () => {
+    const selectedAmount = parseInt(numberOfQuestions.value);
+    const selectedCategory = categorySelect.value;
+
+    if (selectedCategory && selectedAmount) {
+        const difficultyLevel =
+            difficultyLevels[
+                Math.floor(Math.random() * difficultyLevels.length)
+            ];
+
+        getQuestionData(selectedAmount, selectedCategory, difficultyLevel);
+    } else {
+        console.log('Please select both category and amount');
+    }
+};
+
 const addingEventListeners = () => {
     const submitButton = document.getElementById('button');
-    submitButton.addEventListener('click', () => {
-        console.log('handle submit');
-    });
+    submitButton.addEventListener('click', handleUserInput);
 };
 
 addingEventListeners();
