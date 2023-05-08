@@ -12,6 +12,14 @@ const category = [
         id: 10,
     },
     {
+        name: 'Films',
+        id: 11,
+    },
+    {
+        name: 'Music',
+        id: 12,
+    },
+    {
         name: 'Video Games',
         id: 15,
     },
@@ -41,13 +49,13 @@ let timerId;
 
 const setTimerDuration = (difficultyLevel) => {
     if (difficultyLevel === 'easy') {
-        timerDuration = 15;
+        timerDuration = 30;
     }
     if (difficultyLevel === 'medium') {
-        timerDuration = 20;
+        timerDuration = 45;
     }
     if (difficultyLevel === 'hard') {
-        timerDuration = 30;
+        timerDuration = 60;
     }
 };
 
@@ -65,7 +73,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
 
         if (data.results.length < amount) {
             enableGenerateQuestionsButton();
-            console.log(
+            alert(
                 `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
             );
         } else {
