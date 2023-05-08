@@ -1,8 +1,6 @@
 const game = document.getElementById('game');
 console.log(game);
 
-let score = 0;
-
 const scoreElement = document.getElementById('score');
 
 const difficultyLevels = ['easy', 'medium', 'hard'];
@@ -33,9 +31,12 @@ console.log(category);
 console.log(categorySelect);
 console.log(numberOfQuestions);
 
+let score = 0;
 let points;
 let timerDuration;
 let roundInProgress = false;
+let timerElement;
+let timeLeft;
 let timerId;
 
 const setTimerDuration = (difficultyLevel) => {
@@ -85,8 +86,13 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
 };
 
 const startTimer = (timerDuration) => {
-    let timeLeft = timerDuration;
+    timerElement = document.getElementById('timer');
+    timeLeft = timerDuration;
+    updateTimeElement();
+
     timerId = setInterval(() => {
+        timeLeft--;
+        updateTimeElement();
         console.log(`Time left: ${timeLeft} seconds`);
 
         if (timeLeft === 0) {
@@ -94,9 +100,10 @@ const startTimer = (timerDuration) => {
             clearInterval(timerId);
             finishRound();
         }
-        timeLeft--;
     }, 1000);
 };
+
+const updateTimeElement = () => (timerElement.textContent = timeLeft);
 
 const finishRound = () => {
     roundInProgress = false;
