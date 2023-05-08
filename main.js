@@ -41,24 +41,30 @@ let timerId;
 
 const setTimerDuration = (difficultyLevel) => {
     if (difficultyLevel === 'easy') {
-        timerDuration = 20;
+        timerDuration = 15;
     }
     if (difficultyLevel === 'medium') {
-        timerDuration = 30;
+        timerDuration = 20;
     }
     if (difficultyLevel === 'hard') {
-        timerDuration = 40;
+        timerDuration = 30;
     }
 };
 
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
+        if (roundInProgress) {
+            console.log('A round is already in progress!');
+            return;
+        }
+        disableGenerateQuestionsButton();
         const response = await fetch(
             `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
         );
         const data = await response.json();
 
         if (data.results.length < amount) {
+            enableGenerateQuestionsButton();
             console.log(
                 `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
             );
@@ -108,6 +114,17 @@ const updateTimeElement = () => (timerElement.textContent = timeLeft);
 const finishRound = () => {
     roundInProgress = false;
     clearInterval(timerId);
+    enableGenerateQuestionsButton();
+};
+
+const disableGenerateQuestionsButton = () => {
+    const generateButton = document.getElementById('button');
+    generateButton.disabled = true;
+};
+
+const enableGenerateQuestionsButton = () => {
+    const generateButton = document.getElementById('button');
+    generateButton.disabled = false;
 };
 
 const createCard = (question) => {
