@@ -94,7 +94,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
 
             console.log(randomizedQuestions);
 
-            await fetch('http://localhost:3000/questions', {
+            await fetch('http://localhost:3000/randomizedQuestions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
