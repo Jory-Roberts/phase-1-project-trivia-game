@@ -167,8 +167,8 @@ const handleUserInput = () => {
 };
 
 const addingEventListeners = () => {
-    const submitButton = document.getElementById('button');
-    submitButton.addEventListener('click', handleUserInput);
+    const generateButton = document.getElementById('button');
+    generateButton.addEventListener('click', handleUserInput);
 };
 
 addingEventListeners();
