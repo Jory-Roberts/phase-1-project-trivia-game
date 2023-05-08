@@ -33,6 +33,23 @@ console.log(category);
 console.log(categorySelect);
 console.log(numberOfQuestions);
 
+let points;
+let timerDuration;
+let roundInProgress = false;
+let timerId;
+
+const setTimerDuration = (difficultyLevel) => {
+    if (difficultyLevel === 'easy') {
+        timerDuration = 20;
+    }
+    if (difficultyLevel === 'medium') {
+        timerDuration = 30;
+    }
+    if (difficultyLevel === 'hard') {
+        timerDuration = 40;
+    }
+};
+
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
         const response = await fetch(
@@ -47,21 +64,44 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
         } else {
             const questions = Array.from(data.results);
             const randomizedQuestions = [];
+            setTimerDuration(difficultyLevel);
 
             while (randomizedQuestions.length < amount) {
                 const randomNumber = Math.floor(
                     Math.random() * questions.length
                 );
                 const question = questions.splice(randomNumber, 1)[0];
+                question.points = points;
                 randomizedQuestions.push(question);
             }
 
             console.log(randomizedQuestions);
             renderQuestionData(randomizedQuestions);
+            roundInProgress = true;
+            startTimer(timerDuration);
         }
     } catch (error) {
         console.log(error);
     }
+};
+
+const startTimer = (timerDuration) => {
+    let timeLeft = timerDuration;
+    timerId = setInterval(() => {
+        console.log(`Time left: ${timeLeft} seconds`);
+
+        if (timeLeft === 0) {
+            console.log('Time is up!');
+            clearInterval(timerId);
+            finishRound();
+        }
+        timeLeft--;
+    }, 1000);
+};
+
+const finishRound = () => {
+    roundInProgress = false;
+    clearInterval(timerId);
 };
 
 const createCard = (question) => {
