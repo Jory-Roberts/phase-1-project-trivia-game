@@ -35,12 +35,15 @@ const category = [
 
 const categorySelect = document.getElementById('category');
 const numberOfQuestions = document.getElementById('amount');
+const generateButton = document.getElementById('button');
+const resetButton = document.getElementById('resetButton');
 console.log(category);
 console.log(categorySelect);
 console.log(numberOfQuestions);
+console.log(generateButton);
+console.log(resetButton);
 
 let score = 0;
-let points;
 let timerDuration;
 let roundInProgress = false;
 let timerElement;
@@ -123,6 +126,15 @@ const finishRound = () => {
     roundInProgress = false;
     clearInterval(timerId);
     enableGenerateQuestionsButton();
+
+    const unansweredQuestions = document.querySelectorAll(
+        '.card:not(.flipped)'
+    );
+    if (unansweredQuestions.length > 0) {
+        resetButton.disabled = true;
+    } else {
+        resetButton.disabled = false;
+    }
 };
 
 const disableGenerateQuestionsButton = () => {
@@ -246,9 +258,25 @@ const handleUserInput = () => {
     getQuestionData(selectedAmount, selectedCategory, selectedDifficultyLevel);
 };
 
+const resetSelections = () => {
+    const flippedCards = document.querySelectorAll('.card.flipped');
+    flippedCards.forEach((card) => {
+        card.classList.remove('flipped');
+        card.classList.remove('correct');
+        card.classList.remove('wrong');
+    });
+    score = 0;
+    scoreElement.textContent = `${score}`;
+
+    enableGenerateQuestionsButton();
+    roundInProgress = false;
+    clearInterval(timerId);
+    timerElement.textContent = '0';
+};
+
 const addingEventListeners = () => {
-    const generateButton = document.getElementById('button');
     generateButton.addEventListener('click', handleUserInput);
+    resetButton.addEventListener('click', resetSelections);
 };
 
 addingEventListeners();
