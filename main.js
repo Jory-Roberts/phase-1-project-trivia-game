@@ -71,7 +71,6 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
                     Math.random() * questions.length
                 );
                 const question = questions.splice(randomNumber, 1)[0];
-                question.points = points;
                 randomizedQuestions.push(question);
             }
 
