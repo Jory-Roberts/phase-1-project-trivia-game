@@ -93,6 +93,14 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
             }
 
             console.log(randomizedQuestions);
+
+            await fetch('http://localhost:3000/questions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(randomizedQuestions),
+            });
             renderQuestionData(randomizedQuestions);
             roundInProgress = true;
             startTimer(timerDuration);
@@ -272,6 +280,9 @@ const resetSelections = () => {
     roundInProgress = false;
     clearInterval(timerId);
     timerElement.textContent = '0';
+    while (game.firstChild) {
+        game.removeChild(game.firstChild);
+    }
 };
 
 const addingEventListeners = () => {
