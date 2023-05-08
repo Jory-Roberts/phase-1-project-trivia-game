@@ -94,13 +94,13 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
 
             console.log(randomizedQuestions);
 
-            await fetch('http://localhost:3000/randomizedQuestions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(randomizedQuestions),
-            });
+            // await fetch('http://localhost:3000/randomizedQuestions', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(randomizedQuestions),
+            // });
             renderQuestionData(randomizedQuestions);
             roundInProgress = true;
             startTimer(timerDuration);
