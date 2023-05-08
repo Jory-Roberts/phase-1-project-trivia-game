@@ -78,3 +78,79 @@ body {
 .card.wrong {
     border: 5px solid red;
 }
+
+#category {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#category option {
+    background-color: #555;
+    color: #fff;
+}
+
+#category option:hover {
+    background-color: #777;
+}
+
+#level {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#level option {
+    background-color: #555;
+    color: #fff;
+}
+
+#level option:hover {
+    background-color: #777;
+}
+
+#amount {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#amount option {
+    background-color: #555;
+    color: #fff;
+}
+
+#amount option:hover {
+    background-color: #777;
+}
+
+#button,
+#resetButton {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#button:hover,
+#resetButton:hover {
+    background-color: #555;
+}
+
+#button:focus,
+#resetButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff;
+}
