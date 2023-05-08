@@ -73,7 +73,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
 
         if (data.results.length < amount) {
             enableGenerateQuestionsButton();
-            alert(
+            console.log(
                 `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
             );
         } else {
@@ -211,6 +211,15 @@ const addRadioChangeListeners = (radioButtons) => {
 
             console.log('Current score:', score);
             scoreElement.textContent = `${score}`;
+
+            const unansweredQuestions = document.querySelectorAll(
+                '.card:not(.flipped)'
+            );
+            if (unansweredQuestions.length === 0) {
+                console.log('No more questions!');
+                clearInterval(timerId);
+                finishRound();
+            }
         });
     });
 };
