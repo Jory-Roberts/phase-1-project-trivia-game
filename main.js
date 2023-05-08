@@ -117,9 +117,9 @@ const createCard = (question) => {
 };
 
 const addRadioChangeListeners = (radioButtons) => {
-    radioButtons.map((radio) => {
+    radioButtons.forEach((radio) => {
         radio.addEventListener('change', (e) => {
-            radioButtons.map((button) => {
+            radioButtons.forEach((button) => {
                 //Changes selection visually between T/F
                 button.checked = button == e.target;
             });
