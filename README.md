@@ -20,7 +20,7 @@ This is a quiz game where users can generate true or false questions and test th
 4. Click on the "Generate Questions" button.
 5. Click on the generated card with a question to flip it allowing you to select your answer
 6. Answer the questions by clicking on the corresponding True/False options.
-7. The score will be displayed on the page.
+7. The score will be displayed on the page. 1 point per correct answer. No points are awarded for wrong answers. Visually, the card will highlight green for correct answers and red for wrong.
 8. You have a limited time to answer each question. The timer will be displayed on the page.
 9. Once you have answered all the questions or the time is up, the round will finish.
 10. You can click the "Reset" button to start a new round.

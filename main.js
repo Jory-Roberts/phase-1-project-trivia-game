@@ -65,7 +65,6 @@ const setTimerDuration = (difficultyLevel) => {
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
         if (roundInProgress) {
-            displayMessage('A round is already in progress!');
             return;
         }
         disableGenerateQuestionsButton();
@@ -237,7 +236,6 @@ const addRadioChangeListeners = (radioButtons) => {
                 console.log('Correct answer!');
                 selectedCard.classList.add('correct');
             } else {
-                score--;
                 console.log('Wrong answer!');
                 selectedCard.classList.add('wrong');
             }
