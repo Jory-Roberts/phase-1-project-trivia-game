@@ -64,44 +64,49 @@ const setTimerDuration = (difficultyLevel) => {
 
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
-        if (roundInProgress) {
+        if (roundInProgress === true) {
+            displayMessage('Round in progress!');
             return;
         }
+
         disableGenerateQuestionsButton();
-        const response = await fetch(
-            `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
-        );
+
+        const apiUrl = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`;
+        const response = await fetch(apiUrl);
         const data = await response.json();
-        //Checks if there are the amount of questions available that the user selects
-        if (data.results.length < amount) {
+
+        const totalQuestions = data.results.length;
+        if (totalQuestions < amount) {
             enableGenerateQuestionsButton();
             displayMessage(
-                `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
+                `There are only ${totalQuestions} questions for ${difficultyLevel} difficulty.`
             );
         } else {
-            //New array created from await.response
             const questions = Array.from(data.results);
-            //randomizedQuestions store  a random selection of questions from questions array
-            const randomizedQuestions = [];
-            setTimerDuration(difficultyLevel);
-
-            while (randomizedQuestions.length < amount) {
-                const randomNumber = Math.floor(
-                    Math.random() * questions.length
-                );
-                //Removes question from the questions array and adds to the randomizedQuestions array
-                const question = questions.splice(randomNumber, 1)[0];
-                randomizedQuestions.push(question);
-            }
+            const randomizedQuestions = getRandomQuestions(questions, amount);
 
             console.log(randomizedQuestions);
 
             renderQuestionData(randomizedQuestions);
+            setTimerDuration(difficultyLevel);
             startRound();
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        displayMessage('Something went wrong!');
     }
+};
+
+const getRandomQuestions = (questions, amount) => {
+    const randomizedQuestions = [];
+
+    while (randomizedQuestions.length < amount) {
+        const randomNumber = Math.floor(Math.random() * questions.length);
+        const question = questions.splice(randomNumber, 1)[0];
+        randomizedQuestions.push(question);
+    }
+
+    return randomizedQuestions;
 };
 
 const startTimer = (timerDuration) => {
@@ -247,7 +252,9 @@ const addRadioChangeListeners = (radioButtons) => {
                 '.card:not(.flipped)'
             );
             if (unansweredQuestions.length === 0) {
-                console.log('No more questions!');
+                displayMessage(
+                    'No more questions! Please reset and generate more!!'
+                );
                 clearInterval(timerId);
                 finishRound();
             }
