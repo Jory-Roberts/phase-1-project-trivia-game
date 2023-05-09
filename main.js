@@ -73,14 +73,16 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
             `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`
         );
         const data = await response.json();
-
+        //Checks if there are the amount of questions available that the user selects
         if (data.results.length < amount) {
             enableGenerateQuestionsButton();
             console.log(
                 `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
             );
         } else {
+            //New array created from await.response
             const questions = Array.from(data.results);
+            //randomizedQuestions store  a random selection of questions from questions array
             const randomizedQuestions = [];
             setTimerDuration(difficultyLevel);
 
@@ -88,6 +90,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
                 const randomNumber = Math.floor(
                     Math.random() * questions.length
                 );
+                //Removes question from the questions array and adds to the randomizedQuestions array
                 const question = questions.splice(randomNumber, 1)[0];
                 randomizedQuestions.push(question);
             }
