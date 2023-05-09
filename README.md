@@ -6,8 +6,8 @@ This is a quiz game where users can generate true or false questions and test th
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/quiz-game.git`
-2. Navigate to the project directory: `cd quiz-game`
+1. Clone the repository: `git clone https://github.com/Jory-Roberts/phase-1-project-trivia-game`
+2. Navigate to the project directory: `cd phase-1-project-trivia-game`
 3. Open the `index.html` file in a web browser.
 4. If you're on Windows, the command `explorer.exe index.html` will open the file in your preferred web browser
 5. You can always launch it with Live Server
