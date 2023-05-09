@@ -5,6 +5,27 @@ body {
         'Lucida Sans', Arial, sans-serif;
     text-align: center;
 }
+.category-container {
+    display: flex;
+    align-items: center;
+}
+
+.category-container label {
+    margin-right: 10px;
+}
+
+.options-container {
+    display: flex;
+}
+
+.category-container,
+.difficulty-level-container,
+.number-of-questions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
 
 .message-box {
     display: none;
@@ -90,6 +111,12 @@ body {
 
 .card.wrong {
     border: 5px solid red;
+}
+
+#game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #category {
