@@ -40,6 +40,26 @@ body {
     justify-content: flex-end;
 }
 
+.timer-score-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: contents;
+    gap: 5px;
+}
+
+/* .button-container button {
+    white-space: nowrap;
+} */
+
+.timer-score-container #timer,
+.timer-score-container #score {
+    display: inline-block;
+}
+
 .message-box {
     display: none;
     background-color: #f1f1f1c6;

@@ -8,9 +8,15 @@
         <title>Document</title>
     </head>
     <body>
-        <h1>Welcome!</h1>
-        <h2>Timer: <span id="timer">0</span></h2>
-        <h2>Score: <span id="score">0</span></h2>
+        <h1>Trivia Game</h1>
+        <div class="timer-score-container">
+            <h2>Timer: <span id="timer">0</span></h2>
+            <div class="button-container">
+                <button id="button">Generate</button>
+                <button id="resetButton">Reset</button>
+            </div>
+            <h2>Score: <span id="score">0</span></h2>
+        </div>
         <p id="message"></p>
         <div class="options-container">
             <div class="category-container">
@@ -39,10 +45,10 @@
         </div>
         <br />
         <br />
-        <button id="button">Generate Questions</button>
+
         <br />
         <br />
-        <button id="resetButton">Reset</button>
+
         <br />
 
         <div id="game"></div>
