@@ -10,13 +10,13 @@ This is a quiz game where users can generate true or false questions and test th
 2. Navigate to the project directory: `cd phase-1-project-trivia-game`
 3. Open the `index.html` file in a web browser.
 4. If you're on Windows, the command `explorer.exe index.html` will open the file in your preferred web browser
-5. You can always launch it with Live Server
+5. You can always launch the trivia game with Live Server.
 
 ## Usage
 
 1. Open the trivia game in your web browser.
 2. Select a category, difficulty level, and the number of questions you want to generate.
-3. If your choices don't generate any questions from the API, simply mouse over the message box to dismiss and select different choices
+3. If your choices don't generate any questions from the API, simply mouse over the message box to dismiss and select different choices.
 4. Click on the "Generate Questions" button.
 5. Click on the generated card with a question to flip it allowing you to select your answer
 6. Answer the questions by clicking on the corresponding True/False options.
