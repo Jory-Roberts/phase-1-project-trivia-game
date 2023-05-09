@@ -17,11 +17,12 @@ This is a quiz game where users can generate true or false questions and test th
 1. Open the trivia game in your web browser.
 2. Select a category, difficulty level, and the number of questions you want to generate.
 3. Click on the "Generate Questions" button.
-4. Answer the questions by clicking on the corresponding True/False options.
-5. The score will be displayed on the page.
-6. You have a limited time to answer each question. The timer will be displayed on the page.
-7. Once you have answered all the questions or the time is up, the round will finish.
-8. You can click the "Reset" button to start a new round.
+4. Click on the generated card with a question to flip it allowing you to select your answer
+5. Answer the questions by clicking on the corresponding True/False options.
+6. The score will be displayed on the page.
+7. You have a limited time to answer each question. The timer will be displayed on the page.
+8. Once you have answered all the questions or the time is up, the round will finish.
+9. You can click the "Reset" button to start a new round.
 
 ## Configuration
 
