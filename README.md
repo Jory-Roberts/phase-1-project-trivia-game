@@ -24,6 +24,7 @@ This is a quiz game where users can generate true or false questions and test th
 8. You have a limited time to answer each question. The timer will be displayed on the page.
 9. Once you have answered all the questions or the time is up, the round will finish.
 10. You can click the "Reset" button to start a new round.
+11.
 
 ## Configuration
 
