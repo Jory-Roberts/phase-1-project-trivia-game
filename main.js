@@ -95,8 +95,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
             console.log(randomizedQuestions);
 
             renderQuestionData(randomizedQuestions);
-            roundInProgress = true;
-            startTimer(timerDuration);
+            startRound();
         }
     } catch (error) {
         console.log(error);
@@ -122,6 +121,11 @@ const startTimer = (timerDuration) => {
 };
 
 const updateTimeElement = () => (timerElement.textContent = timeLeft);
+
+const startRound = () => {
+    roundInProgress = true;
+    startTimer(timerDuration);
+};
 
 const finishRound = () => {
     roundInProgress = false;
