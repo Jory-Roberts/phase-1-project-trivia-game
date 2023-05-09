@@ -16,6 +16,7 @@ body {
 
 .options-container {
     display: flex;
+    justify-content: space-between;
 }
 
 .category-container,
@@ -25,6 +26,18 @@ body {
     flex-direction: column;
     align-items: center;
     margin-right: 20px;
+}
+
+.category-container {
+    justify-content: flex-start;
+}
+
+.difficulty-level-container {
+    justify-content: center;
+}
+
+.number-of-questions-container {
+    justify-content: flex-end;
 }
 
 .message-box {
