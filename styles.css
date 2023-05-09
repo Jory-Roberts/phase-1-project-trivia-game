@@ -6,6 +6,19 @@ body {
     text-align: center;
 }
 
+.message-box {
+    display: none;
+    background-color: #f1f1f1c6;
+    color: red;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px auto;
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+}
+
 .card-container {
     display: flex;
     justify-content: center;

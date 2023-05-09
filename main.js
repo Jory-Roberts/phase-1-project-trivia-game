@@ -65,7 +65,7 @@ const setTimerDuration = (difficultyLevel) => {
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
         if (roundInProgress) {
-            console.log('A round is already in progress!');
+            displayMessage('A round is already in progress!');
             return;
         }
         disableGenerateQuestionsButton();
@@ -76,7 +76,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
         //Checks if there are the amount of questions available that the user selects
         if (data.results.length < amount) {
             enableGenerateQuestionsButton();
-            console.log(
+            displayMessage(
                 `There are only ${data.results.length} questions for ${difficultyLevel} difficulty.`
             );
         } else {
@@ -116,11 +116,24 @@ const startTimer = (timerDuration) => {
         console.log(`Time left: ${timeLeft} seconds`);
 
         if (timeLeft === 0) {
+            displayMessage('Time is up!');
             console.log('Time is up!');
             clearInterval(timerId);
             finishRound();
         }
     }, 1000);
+};
+
+const displayMessage = (message) => {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.classList.add('message-box');
+    messageElement.style.display = 'block';
+
+    messageElement.addEventListener('mouseover', () => {
+        messageElement.textContent = ' ';
+        messageElement.style.display = 'none';
+    });
 };
 
 const updateTimeElement = () => (timerElement.textContent = timeLeft);
