@@ -64,8 +64,7 @@ const setTimerDuration = (difficultyLevel) => {
 
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
-        if (roundInProgress === true) {
-            displayMessage('Round in progress!');
+        if (roundInProgress) {
             return;
         }
 
