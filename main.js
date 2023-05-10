@@ -65,10 +65,12 @@ const setTimerDuration = (difficultyLevel) => {
 const getQuestionData = async (amount, category, difficultyLevel) => {
     try {
         if (roundInProgress) {
+            console.log('Round in progress!');
             return;
         }
 
-        disableGenerateQuestionsButton();
+        setTimerDuration(difficultyLevel);
+        startRound();
 
         const apiUrl = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficultyLevel}&type=boolean`;
         const response = await fetch(apiUrl);
@@ -87,8 +89,6 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
             console.log(randomizedQuestions);
 
             renderQuestionData(randomizedQuestions);
-            setTimerDuration(difficultyLevel);
-            startRound();
         }
     } catch (error) {
         console.error(error);
@@ -149,6 +149,7 @@ const updateTimeElement = () => (timerElement.textContent = timeLeft);
 const startRound = () => {
     roundInProgress = true;
     startTimer(timerDuration);
+    disableGenerateQuestionsButton();
 };
 
 const finishRound = () => {
