@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    color: white;
+    color: whitesmoke;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
         'Lucida Sans', Arial, sans-serif;
     text-align: center;
@@ -135,11 +135,13 @@ body {
 }
 
 .card.correct {
-    border: 5px solid green;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 1);
+    border-radius: 30px;
 }
 
 .card.wrong {
-    border: 5px solid red;
+    box-shadow: 0 0 20px rgba(255, 0, 66, 1);
+    border-radius: 30px;
 }
 
 .timer-low {
@@ -215,7 +217,7 @@ body {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 0 10px gold;
+    box-shadow: 0 0 10px;
 }
 
 #button:hover,
