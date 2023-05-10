@@ -142,6 +142,10 @@ body {
     border: 5px solid red;
 }
 
+.timer-low {
+    color: red;
+}
+
 #game {
     display: flex;
     flex-wrap: wrap;

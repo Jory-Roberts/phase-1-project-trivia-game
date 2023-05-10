@@ -123,6 +123,11 @@ const startTimer = (timerDuration) => {
             console.log('Time is up!');
             clearInterval(timerId);
             finishRound();
+        } else if (timeLeft <= 10) {
+            console.log('You are here');
+            timerElement.classList.add('timer-low');
+        } else {
+            timerElement.classList.remove('timer-low');
         }
     }, 1000);
 };
