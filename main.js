@@ -78,7 +78,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
         if (totalQuestions < amount) {
             enableGenerateQuestionsButton();
             displayMessage(
-                `There are only ${totalQuestions} questions for ${difficultyLevel} difficulty.`
+                `There are  ${totalQuestions} questions for ${difficultyLevel} difficulty.`
             );
         } else {
             const questions = Array.from(data.results);

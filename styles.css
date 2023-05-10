@@ -58,7 +58,7 @@ body {
 
 .message-box {
     display: none;
-    background-color: #f1f1f1c6;
+    background-color: #333;
     color: red;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -151,7 +151,7 @@ body {
 #category {
     background-color: #333;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 5px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -169,7 +169,7 @@ body {
 #level {
     background-color: #333;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 5px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -187,7 +187,7 @@ body {
 #amount {
     background-color: #333;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 5px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -206,11 +206,12 @@ body {
 #resetButton {
     background-color: #333;
     color: #fff;
-    padding: 10px 20px;
+    padding: 25px 25px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    box-shadow: 0 0 10px gold;
 }
 
 #button:hover,
