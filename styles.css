@@ -42,8 +42,8 @@ body {
 
 .timer-score-container {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
 }
 
 .button-container {
@@ -240,6 +240,14 @@ body {
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 0 10px;
+}
+
+#button {
+    padding: 20px;
+}
+
+#resetButton {
+    padding: 15px;
 }
 
 #button:hover,
