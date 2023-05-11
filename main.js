@@ -76,6 +76,7 @@ const getQuestionData = async (amount, category, difficultyLevel) => {
             );
         } else {
             const questions = Array.from(data.results);
+            //creates array from results. returns an array based on the amount
             const randomizedQuestions = getRandomQuestions(questions, amount);
 
             console.log(randomizedQuestions);
@@ -96,6 +97,7 @@ const getRandomQuestions = (questions, amount) => {
     while (randomizedQuestions.length < amount) {
         const randomNumber = Math.floor(Math.random() * questions.length);
         const question = questions.splice(randomNumber, 1)[0];
+        //Removes question at index from questions array
         randomizedQuestions.push(question);
     }
 
@@ -297,6 +299,7 @@ const resetSelections = () => {
     roundInProgress = false;
     clearInterval(timerId);
     timerElement.textContent = '0';
+    //Loop to clear game elements when 'reset' is clicked
     while (game.firstChild) {
         game.removeChild(game.firstChild);
     }

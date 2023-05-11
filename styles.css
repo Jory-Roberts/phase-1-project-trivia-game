@@ -57,16 +57,36 @@ body {
 }
 
 .message-box {
-    display: none;
-    background-color: #333;
-    color: red;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 20px auto;
+    display: block;
+    background-color: #f2f2f2;
+    color: #333;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
     width: 300px;
     text-align: center;
     cursor: pointer;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.message-box:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.message-box h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.message-box p {
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .card-container {
